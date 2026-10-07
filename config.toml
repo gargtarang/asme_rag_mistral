@@ -1,0 +1,256 @@
+# ASME RAG + Chamber Design Assistant Configuration
+# EDIT HERE: All tunable values in one place
+
+[general]
+# Project name
+project_name = "ASME BPVC RAG + Vacuum Chamber Design Assistant"
+
+# Workspace root (absolute path will be resolved at runtime)
+workspace_root = "."
+
+# UTF-8 console output on Windows
+force_utf8 = true
+
+[lm_studio]
+# LM Studio API endpoint
+api_url = "http://localhost:1234/v1"
+
+# Chat model (model-agnostic; change here)
+chat_model = "gemma-4-26b-a4b"
+
+# Embedding model
+embedding_model = "nomic-ai/text-embedding-nomic-embed-text-v1.5"
+
+# Task prefixes for embeddings
+query_prefix = "search_query: "
+chunk_prefix = "search_document: "
+
+# Temperature for chat generation
+temperature = 0.1
+
+# Maximum tokens for chat response
+max_tokens = 4096
+
+# Timeout for API calls (seconds)
+timeout_seconds = 120
+
+[vision]
+enabled = true
+model = "gemma-4-26b-a4b"  # Same as chat model if vision-capable
+render_dpi = 150
+max_image_px = 2048
+max_figures_per_run = 10
+timeout_s = 60
+save_page_images = false
+debug_dir = "outputs/debug_images"
+repeat_reads = 2
+reading_tolerance_pct = 5.0
+resume = true
+
+[pdf_parser]
+# Regex patterns to strip from text
+strip_patterns = [
+    "Copyright.*ASME",
+    "Licensed.*use",
+    "Unauthorized.*reproduction",
+    "ASME\\s+International",
+    "Page\\s+\\d+",
+]
+
+# Page fraction thresholds for header/footer detection
+header_footer_threshold = 0.1
+
+# Minimum text height to consider (points)
+min_text_height = 6
+
+# Column detection thresholds
+column_gap_threshold = 20  # points
+min_column_width = 100  # points
+
+[chunker]
+# Chunk size targets (characters)
+target_chunk_size = 1024
+min_chunk_size = 256
+max_chunk_size = 4096
+
+# Overlap between chunks (characters)
+chunk_overlap = 256
+
+# Clause boundary patterns (regex)
+clause_patterns = [
+    "UG-\\d+",
+    "UW-\\d+",
+    "UNF-\\d+",
+    "UNC-\\d+",
+    "UJV-\\d+",
+    "Appendix\\s+\\d+",
+    "Part\\s+[A-Z]+",
+    "Subsection\\s+[A-Z]+",
+    "Paragraph\\s+[A-Z0-9]+",
+    "\\d+\\.\\d+",
+    "\\d+\\.\\d+\\.\\d+",
+]
+
+# Table detection patterns
+table_patterns = [
+    "Table\\s+[A-Z0-9]+",
+    "TABLE\\s+[A-Z0-9]+",
+]
+
+# Figure detection patterns
+figure_patterns = [
+    "Fig\\.\\s*\\d+",
+    "FIG\\.\\s*\\d+",
+    "Figure\\s+\\d+",
+]
+
+# Cross-reference patterns
+xref_patterns = [
+    "see\\s+[A-Z]+-\\d+",
+    "See\\s+[A-Z]+-\\d+",
+    "refer\\s+to\\s+[A-Z]+-\\d+",
+    "Refer\\s+to\\s+[A-Z]+-\\d+",
+    "per\\s+[A-Z]+-\\d+",
+    "Per\\s+[A-Z]+-\\d+",
+    "as\\s+per\\s+[A-Z]+-\\d+",
+    "As\\s+per\\s+[A-Z]+-\\d+",
+]
+
+[[documents]]
+id = "viii1_2025"
+code = "ASME BPVC"
+division = "VIII-1"
+edition = 2025
+unit_system = "mixed"
+pdf_path = "data/pdfs/ASME BPVC VIII-1_2025.pdf"
+parser_profile = "code_book"
+chunker_profile = "code_book"
+
+[[documents]]
+id = "viii2_2025"
+code = "ASME BPVC"
+division = "VIII-2"
+edition = 2025
+unit_system = "mixed"
+pdf_path = "data/pdfs/ASME BPVC VIII-2_2025.pdf"
+parser_profile = "code_book"
+chunker_profile = "code_book"
+
+[[documents]]
+id = "iid_metric_2025"
+code = "ASME BPVC"
+division = "II-D"
+edition = 2025
+unit_system = "metric"
+pdf_path = "data/pdfs/ASME_BPVC_IIDM_2025.pdf"
+parser_profile = "materials_data"
+chunker_profile = "materials_data"
+
+[[documents]]
+id = "iia_v1_2025"
+code = "ASME BPVC"
+division = "II-A"
+edition = 2025
+unit_system = "mixed"
+pdf_path = "data/pdfs/ASME_BPVC_IIVI_2025.pdf"
+parser_profile = "material_specs"
+chunker_profile = "material_specs"
+
+[[documents]]
+id = "b16_5_2025"
+code = "ASME B16.5"
+edition = 2025
+unit_system = "mixed"
+pdf_path = "data/pdfs/B16_5_2025.pdf"
+parser_profile = "standard"
+chunker_profile = "standard"
+
+[[documents]]
+id = "b36_10_2022"
+code = "ASME B36.10"
+edition = 2022
+unit_system = "mixed"
+pdf_path = "data/pdfs/B36_10_2022.pdf"
+parser_profile = "standard"
+chunker_profile = "standard"
+
+[storage]
+# SQLite database path
+database_path = "data/asme_rag.db"
+
+# FTS5 tokenization settings
+fts5_tokenize = "unicode61 remove_diacritics 2"
+
+[retrieval]
+# Number of top results to return
+top_k = 10
+
+# Similarity threshold for embedding search
+similarity_threshold = 0.7
+
+# Hybrid retrieval weights
+keyword_weight = 0.4
+embedding_weight = 0.6
+
+# Minimum score for a result to be included
+min_score = 0.5
+
+[embedding]
+# Embedding dimension (nomic-embed-text-v1.5 uses 768)
+embedding_dim = 768
+
+# Batch size for embedding
+batch_size = 32
+
+[xref]
+max_depth = 1
+max_clauses = 40
+ask_when_larger_than = 40
+include_footnotes = true
+show_unexpanded = true
+write_pack_file = true
+prompt_to_expand = true
+
+[links]
+pdf_page_links = true
+pdf_base_dir = "data/pdfs"
+anchor_style = "#page={n}"
+
+[serve]
+host = "127.0.0.1"
+port = 8765
+
+[output]
+# Open output files in VS Code
+open_in_vscode = true
+
+# Maximum number of chat history items to keep
+chat_history_max = 3
+
+[chamber]
+# Default values for chamber design
+default_code = "ASME VIII-1"
+default_edition = 2025
+
+# Structural credit for jacket ribs (none / panel / fea)
+structural_credit = "none"
+
+# Threshold for FEA recommendation (number of nozzles)
+fea_nozzle_threshold = 5
+
+[eval]
+# Models to evaluate
+models = ["gemma-4-26b-a4b"]
+
+# Evaluation question file
+eval_questions_file = "tests/eval_questions.toml"
+
+[logging]
+# Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+level = "INFO"
+
+# Log file path
+log_file = "logs/asme_rag.log"
+
+# Console logging
+console_log = true
