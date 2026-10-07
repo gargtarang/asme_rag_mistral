@@ -1,0 +1,106 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: ASME RAG CLI",
+            "type": "python",
+            "request": "launch",
+            "module": "asme_rag",
+            "args": ["check"],
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONIOENCODING": "utf-8",
+                "PYTHONUTF8": "1"
+            }
+        },
+        {
+            "name": "Python: ASME RAG Serve",
+            "type": "python",
+            "request": "launch",
+            "module": "asme_rag",
+            "args": ["serve"],
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONIOENCODING": "utf-8",
+                "PYTHONUTF8": "1"
+            }
+        },
+        {
+            "name": "Python: Chamber Calc",
+            "type": "python",
+            "request": "launch",
+            "module": "chamber.calc",
+            "args": ["chamber.toml", "nozzles.toml", "--cite"],
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONIOENCODING": "utf-8",
+                "PYTHONUTF8": "1"
+            }
+        },
+        {
+            "name": "Python: Chamber Report",
+            "type": "python",
+            "request": "launch",
+            "module": "chamber.report",
+            "args": ["chamber.toml", "nozzles.toml"],
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONIOENCODING": "utf-8",
+                "PYTHONUTF8": "1"
+            }
+        },
+        {
+            "name": "Python: Chamber Init",
+            "type": "python",
+            "request": "launch",
+            "module": "chamber.init",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONIOENCODING": "utf-8",
+                "PYTHONUTF8": "1"
+            }
+        },
+        {
+            "name": "Python: Run Tests",
+            "type": "python",
+            "request": "launch",
+            "module": "pytest",
+            "args": ["tests/", "-v"],
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONIOENCODING": "utf-8",
+                "PYTHONUTF8": "1"
+            }
+        },
+        {
+            "name": "Python: Fake LM Server",
+            "type": "python",
+            "request": "launch",
+            "module": "tests.fake_lm_server",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONIOENCODING": "utf-8",
+                "PYTHONUTF8": "1"
+            }
+        },
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONIOENCODING": "utf-8",
+                "PYTHONUTF8": "1"
+            }
+        }
+    ]
+}

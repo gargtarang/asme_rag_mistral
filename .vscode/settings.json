@@ -1,0 +1,57 @@
+{
+    "python.defaultInterpreterPath": ".venv\\Scripts\\python.exe",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.formatting.provider": "none",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "editor.formatOnSave": false,
+    "files.autoSave": "onFocusChange",
+    "console.logLevel": "verbose",
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",
+    "terminal.integrated.env.windows": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.formatOnSave": false
+    },
+    "[toml]": {
+        "editor.quickSuggestions": {
+            "other": true,
+            "strings": true
+        }
+    },
+    "[markdown]": {
+        "editor.quickSuggestions": {
+            "other": true,
+            "strings": true
+        },
+        "editor.wordWrap": "on"
+    },
+    "workbench.editorAssociations": {
+        "*.md": "markdown"
+    },
+    "markdown.preview.break": true,
+    "markdown.preview.scrollbarStyle": "auto",
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestPath": "tests",
+    "python.testing.unittestEnabled": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/*.pyc": true,
+        ".pytest_cache": true,
+        ".venv": true
+    },
+    "search.exclude": {
+        "**/.git": true,
+        "**/__pycache__": true,
+        "**/*.pyc": true,
+        ".venv": true,
+        "**/node_modules": true
+    }
+}

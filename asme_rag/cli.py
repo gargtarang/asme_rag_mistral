@@ -777,9 +777,18 @@ Configuration:
     
     def cmd_serve(self, args: List[str]):
         """Start local web server (optional, phase 10)."""
-        print("Local web server (phase 10 - optional)")
-        print("This feature is not implemented yet.")
-        print("It will be available after phase 9 is completed.")
+        from asme_rag.serve import serve, main as serve_main
+        
+        # Parse arguments
+        import argparse as ap
+        parser = ap.ArgumentParser(description='Start ASME RAG local web server')
+        parser.add_argument('--host', default=None, help='Host to bind to')
+        parser.add_argument('--port', type=int, default=None, help='Port to listen on')
+        parser.add_argument('--debug', action='store_true', help='Enable debug logging')
+        parsed_args = parser.parse_args(args)
+        
+        # Call serve with parsed args
+        serve_main()
     
     def cmd_page(self, args: List[str]):
         """Show reading order for a PDF page."""

@@ -1,0 +1,263 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Setup: Create venv and install dependencies",
+            "type": "shell",
+            "command": "python -m venv .venv && .venv\\Scripts\\pip install -r requirements.txt",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$pip"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "windows": {
+                "activated": true
+            }
+        },
+        {
+            "label": "RAG: Check system",
+            "type": "shell",
+            "command": "python -m asme_rag check",
+            "group": "RAG",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "RAG: Ingest PDFs",
+            "type": "shell",
+            "command": "python -m asme_rag ingest",
+            "group": "RAG",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "RAG: Embed chunks",
+            "type": "shell",
+            "command": "python -m asme_rag embed",
+            "group": "RAG",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "RAG: Ask",
+            "type": "shell",
+            "command": "python -m asme_rag ask",
+            "group": "RAG",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "input": {
+                "type": "promptString",
+                "text": "Enter your question about ASME BPVC:"
+            }
+        },
+        {
+            "label": "RAG: Search",
+            "type": "shell",
+            "command": "python -m asme_rag search",
+            "group": "RAG",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "input": {
+                "type": "promptString",
+                "text": "Enter search query:"
+            }
+        },
+        {
+            "label": "RAG: Refs",
+            "type": "shell",
+            "command": "python -m asme_rag refs",
+            "group": "RAG",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "input": {
+                "type": "promptString",
+                "text": "Enter clause ID to expand:"
+            }
+        },
+        {
+            "label": "RAG: Rulemap",
+            "type": "shell",
+            "command": "python -m asme_rag rulemap",
+            "group": "RAG",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "input": {
+                "type": "promptString",
+                "text": "Enter topic for rule map:"
+            }
+        },
+        {
+            "label": "RAG: Materials",
+            "type": "shell",
+            "command": "python -m asme_rag materials",
+            "group": "RAG",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "input": {
+                "type": "promptString",
+                "text": "Enter grade (e.g., 304L):"
+            }
+        },
+        {
+            "label": "RAG: Chat",
+            "type": "shell",
+            "command": "python -m asme_rag chat",
+            "group": "RAG",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "isBackground": true
+        },
+        {
+            "label": "RAG: Serve UI",
+            "type": "shell",
+            "command": "python -m asme_rag serve",
+            "group": "RAG",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "isBackground": true
+        },
+        {
+            "label": "Chamber: Init",
+            "type": "shell",
+            "command": "python -m chamber.init",
+            "group": "Chamber",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Chamber: Calc",
+            "type": "shell",
+            "command": "python -m chamber.calc chamber.toml nozzles.toml",
+            "group": "Chamber",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Chamber: Report",
+            "type": "shell",
+            "command": "python -m chamber.report chamber.toml nozzles.toml",
+            "group": "Chamber",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Chamber: Provide",
+            "type": "shell",
+            "command": "python -m chamber.provide",
+            "group": "Chamber",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "input": {
+                "type": "promptString",
+                "text": "Enter key=value to store (e.g., allowable_stress=150):"
+            }
+        },
+        {
+            "label": "Run Tests",
+            "type": "shell",
+            "command": "python -m pytest tests/ -v",
+            "group": "Test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Fake LM Server (for testing)",
+            "type": "shell",
+            "command": "python -m tests.fake_lm_server",
+            "group": "Test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "isBackground": true
+        }
+    ]
+}

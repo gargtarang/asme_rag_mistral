@@ -1,0 +1,44 @@
+{
+    "recommendations": [
+        {
+            "extensionId": "ms-python.python",
+            "version": "2024.0.0"
+        },
+        {
+            "extensionId": "tamasfe.even-better-toml",
+            "version": "0.16.0"
+        },
+        {
+            "extensionId": "ms-toolsai.jupyter",
+            "version": "2024.0.0"
+        },
+        {
+            "extensionId": "redhat.vscode-yaml",
+            "version": "0.22.0"
+        },
+        {
+            "extensionId": "ms-vscode.cpptools-extension-pack",
+            "version": "1.7.0"
+        },
+        {
+            "extensionId": "mtxr.sqltools",
+            "version": "0.25.0"
+        },
+        {
+            "extensionId": "mtxr.sqltools-driver-sqlite",
+            "version": "0.6.0"
+        },
+        {
+            "extensionId": "streetsidesoftware.code-spell-checker",
+            "version": "3.0.0"
+        },
+        {
+            "extensionId": "ms-vscode.vscode-node-azure-pack",
+            "version": "0.5.0"
+        },
+        {
+            "extensionId": "simple-browser.simple-browser",
+            "version": "1.10.0"
+        }
+    ]
+}

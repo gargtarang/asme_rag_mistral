@@ -154,10 +154,13 @@ Recommended extensions:
    - `RAG: Check system`
    - `RAG: Ingest PDFs`
    - `RAG: Ask`
+   - `RAG: Chat`
+   - `RAG: Serve UI`
    - `Chamber: Init`
    - `Chamber: Calc`
    - `Chamber: Report`
    - `Run Tests`
+   - `Fake LM Server (for testing)`
 
 ## Configuration
 
@@ -265,6 +268,38 @@ Or use the VS Code task: `Run Tests`
 - Cross-reference expansion
 - Formula calculations (with test vectors)
 - Report generation
+
+## Local Web Server (Phase 10 - Optional)
+
+Start a local web chat interface:
+```bash
+python -m asme_rag serve
+```
+
+This starts a web server on `http://127.0.0.1:8765` with:
+- Streaming chat interface
+- Retrieved excerpts shown before answers
+- Citation warnings displayed
+- Clickable PDF page links (when configured)
+- Session history
+- No external CDN, fonts, or scripts
+- No telemetry
+
+The server binds only to `127.0.0.1` (localhost) and can be accessed in VS Code using the "Simple Browser: Show" command.
+
+### Using with VS Code
+1. Start the server: `python -m asme_rag serve`
+2. In VS Code, press `Ctrl+K` then `O` to open the Simple Browser
+3. Navigate to `http://127.0.0.1:8765`
+4. Or use the task: `RAG: Serve UI`
+
+### Configuration
+Edit the `[serve]` section in `config.toml`:
+```toml
+[serve]
+host = "127.0.0.1"
+port = 8765
+```
 
 ## Fake LM Studio Server
 
