@@ -1,0 +1,23 @@
+# ASME RAG + Chamber Design Assistant
+# Python 3.12
+
+# Core
+PyMuPDF==1.24.5
+requests==2.32.3
+httpx==0.27.0
+numpy==1.26.4
+
+# TOML support (Python 3.12 has tomllib built-in, but we need tomli_w for writing)
+tomli==2.0.1
+tomli_w==1.0.0
+
+# SQLite FTS5 is built-in
+
+# Optional: for better terminal output
+colorama==0.4.6
+
+# For unit tests
+unittest2==1.1.0
+
+# For vision: Pillow for image handling
+Pillow==10.2.0
